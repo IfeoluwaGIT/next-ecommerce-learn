@@ -10,13 +10,17 @@
   },
   "dependencies": {
     "@wix/bookings": "^1.0.428",
+    "@wix/ecom": "^1.0.675",
+    "@wix/redirects": "^1.0.51",
     "@wix/sdk": "^1.12.8",
     "@wix/stores": "^1.0.168",
     "isomorphic-dompurify": "^2.13.0",
     "js-cookie": "^3.0.5",
     "next": "^14.2.2",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-confetti": "^6.1.0",
+    "react-dom": "^18.3.1",
+    "zustand": "^4.5.4"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.6",

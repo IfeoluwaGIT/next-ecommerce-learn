@@ -3,9 +3,9 @@ import Menu from "./Menu";
 import Image from "next/image";
 import SearchBar from "./SearchBar";
 import dynamic from "next/dynamic";
- import NavIcons from "./NavIcons";
+//import NavIcons from "./NavIcons";
 
-//  const NavIcons = dynamic(() => import("./NavIcons"), { ssr: false });
+  const NavIcons = dynamic(() => import("./NavIcons"), { ssr: false }); // this solves the hydration problem
 
 const Navbar = () => {
   return (
@@ -13,7 +13,7 @@ const Navbar = () => {
       {/* MOBILE navbar is a server side component thats why menu is a differennt component*/}
       <div className="h-full flex items-center justify-between md:hidden">
         <Link href="/">
-          <div className="text-2xl tracking-wide">LAMA</div>
+          <div className="text-2xl tracking-wide">SHOP</div>
         </Link>
          <Menu /> 
       </div>
@@ -23,7 +23,7 @@ const Navbar = () => {
         <div className="w-1/3 xl:w-1/2 flex items-center gap-12">
           <Link href="/" className="flex items-center gap-3">
             <Image src="/logo.png" alt="" width={24} height={24} />
-            <div className="text-2xl tracking-wide">LAMA</div>
+            <div className="text-2xl tracking-wide">SHOP</div>
           </Link>
           <div className="hidden xl:flex gap-4">
             <Link href="/">Homepage</Link>

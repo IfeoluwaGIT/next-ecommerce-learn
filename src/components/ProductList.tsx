@@ -18,6 +18,9 @@ const ProductList = async ({
 }) => {
   const wixClient = await wixClientServer();
 
+  // Log searchParams to see what is being passed
+  console.log("Search Params:", searchParams);
+
   const productQuery = wixClient.products
     .queryProducts()
     .startsWith("name", searchParams?.name || "")
@@ -34,10 +37,14 @@ const ProductList = async ({
         ? parseInt(searchParams.page) * (limit || PRODUCT_PER_PAGE)
         : 0
     );
-  // .find();
+
+  // Log productQuery before applying sort parameters
+  console.log("Product Query before sort:", productQuery);
 
   if (searchParams?.sort) {
     const [sortType, sortBy] = searchParams.sort.split(" ");
+    console.log("Sort Type:", sortType);
+    console.log("Sort By:", sortBy);
 
     if (sortType === "asc") {
       productQuery.ascending(sortBy);
@@ -47,9 +54,14 @@ const ProductList = async ({
     }
   }
 
+  // Log productQuery after applying sort parameters
+  console.log("Product Query after sort:", productQuery);
+
   const res = await productQuery.find();
- 
- 
+
+  // Log the response to see the structure of the returned data
+  console.log("Response:", res.items);
+
   return (
     <div className="mt-12 flex gap-x-8 gap-y-16 justify-between flex-wrap">
       {res.items.map((product: products.Product) => (
@@ -73,12 +85,12 @@ const ProductList = async ({
                 fill
                 sizes="25vw"
                 className="absolute object-cover rounded-md"
-              />
+              /> // second image will show after you hover
             )}
           </div>
           <div className="flex justify-between">
             <span className="font-medium">{product.name}</span>
-            <span className="font-semibold">${product.price?.price}</span>
+            <span className="font-semibold">{product.priceData?.formatted?.price}</span>
           </div>
           {product.additionalInfoSections && (
             <div
@@ -98,12 +110,12 @@ const ProductList = async ({
         </Link>
       ))}
       {searchParams?.cat || searchParams?.name ? (
-         <Pagination
+        <Pagination
           currentPage={res.currentPage || 0}
-           hasPrev={res.hasPrev()}
-           hasNext={res.hasNext()}
-         />
-       ) : null}
+          hasPrev={res.hasPrev()}
+          hasNext={res.hasNext()}
+        />
+      ) : null}
     </div>
   );
 };
