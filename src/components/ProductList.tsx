@@ -60,10 +60,10 @@ const ProductList = async ({
   const res = await productQuery.find();
 
   // Log the response to see the structure of the returned data
-  console.log("Response:", res.items);
+  // console.log("Response:", res.items);
 
   return (
-    <div className="mt-12 flex gap-x-8 gap-y-16 justify-between flex-wrap">
+    <div className="mt-12 flex gap-x-8 gap-y-16 justify-between flex-wrap ">
       {res.items.map((product: products.Product) => (
         <Link
           href={"/" + product.slug}
@@ -76,7 +76,7 @@ const ProductList = async ({
               alt=""
               fill
               sizes="25vw"
-              className="absolute object-cover rounded-md z-10 hover:opacity-0 transition-opacity easy duration-500"
+              className="absolute object-cover rounded-md z-10 hover:opacity-0 transition-opacity easy duration-500 border-2 border-gray-300"
             />
             {product.media?.items && (
               <Image
@@ -104,7 +104,7 @@ const ProductList = async ({
               }}
             ></div>
           )}
-          <button className="rounded-2xl ring-1 ring-lama text-lama w-max py-2 px-4 text-xs hover:bg-lama hover:text-white">
+          <button className="rounded-2xl ring-1 ring-gray-700 text-gray-700 w-max py-2 px-4 text-xs hover:bg-lama hover:text-white mb-10">
             Add to Cart
           </button>
         </Link>

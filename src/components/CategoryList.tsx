@@ -24,10 +24,10 @@ const CategoryList = async () => {
               alt=""
               fill
               sizes="20vw"
-              className="object-cover"
+              className="object-cover border-2 border-gray-300"
             />
           </div>
-          <h1 className="mt-8 font-light text-xl tracking-wide">
+          <h1 className="mt-8 font-light text-xl tracking-wide text-center">
             {item.name}
           </h1>
         </Link>
